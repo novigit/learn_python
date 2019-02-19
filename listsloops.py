@@ -123,3 +123,9 @@ for line in all_lines:
 # print the first characters
 for line in all_lines:
     print("The first character is " + line[0])
+
+# range() returns a list of numbers
+for number in range(2, 14, 4):
+    print(number) # 2, 6, 10
+# note that it doesn't report 14.
+# it works similar to index in string[start:end] or list[start:end] in this way
