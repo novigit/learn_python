@@ -47,3 +47,8 @@ for dinucleotide in sorted(all_counts.keys()):
 for dinucleotide, count in all_counts.items():
     if count == 2:
         print(dinucleotide, "\t", count)
+
+# keep in mind the difference between a LOOKUP and a ITERATION
+# if you want to find a single value, use .get() to get the value of the requested key quickly
+# using an iteration with .items() would be highly inefficient
+# in fact, one of the main benefits of a dict is its super efficient LOOKUP
