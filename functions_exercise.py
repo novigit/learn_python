@@ -5,15 +5,17 @@ def my_function(protein, amino_acid):
     percentage = amino_acid_count / protein_length * 100
     return percentage
 
+
 # test suite
 assert my_function("MSRSLLLRFLLFLLLLPPLP", "M") == 5
 assert my_function("MSRSLLLRFLLFLLLLPPLP", "r") == 10
 assert my_function("msrslllrfllfllllpplp", "L") == 50
 assert my_function("MSRSLLLRFLLFLLLLPPLP", "Y") == 0
 
+
 # function that accepts a list of amino acids
 # set default set of amino acids (hydrophobic residues)
-def my_function(protein, amino_acids=["A","I","L","M","F","W","Y","V"]):
+def my_function(protein, amino_acids=["A", "I", "L", "M", "F", "W", "Y", "V"]):
 
     # get the length
     protein_length = len(protein)
@@ -28,9 +30,10 @@ def my_function(protein, amino_acids=["A","I","L","M","F","W","Y","V"]):
 
     # calculate percentage and round to 1 digit
     percentage = sum / protein_length * 100
-    rounded_percentage = round(percentage,1)
+    rounded_percentage = round(percentage, 1)
 
     return rounded_percentage
+
 
 # test suite 2
 assert my_function("MSRSLLLRFLLFLLLLPPLP", ["M"]) == 5

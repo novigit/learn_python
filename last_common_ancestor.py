@@ -1,34 +1,36 @@
 #!/usr/bin/env python
 
 '''
-Exercise: design a function that takes a child-to-parent dictionary and a list of taxa as arguments, and return the last common ancestor of all taxa in the list
+Exercise: design a function that takes a child-to-parent dictionary and a list of taxa as arguments,
+and return the last common ancestor of all taxa in the list
 
 Design an iterative function and a recursive function
 '''
 
 child_to_parent_dict = {
-    'Trepomonas' : 'Diplomonads',
-    'Spironucleus' : 'Diplomonads',
-    'Giardia' : 'Diplomonads',
-    'Diplomonads' : 'Fornicata',
-    'Dysnectes' : 'Fornicata',
-    'Kipferlia' : 'Fornicata',
-    'Chilomastix' : 'Fornicata',
-    'Aduncisulcus' : 'Fornicata',
+    'Trepomonas': 'Diplomonads',
+    'Spironucleus': 'Diplomonads',
+    'Giardia': 'Diplomonads',
+    'Diplomonads': 'Fornicata',
+    'Dysnectes': 'Fornicata',
+    'Kipferlia': 'Fornicata',
+    'Chilomastix': 'Fornicata',
+    'Aduncisulcus': 'Fornicata',
     'Ergobibamus': 'Fornicata',
-    'Carpediemonas' : 'Fornicata',
-    'Pentatrichomonas' : 'Parabasalia',
-    'Trichomonas' : 'Parabasalia',
-    'Tritrichomonas' : 'Parabasalia',
-    'Paratrimastix' : 'Preaxostyla',
-    'Monocercomonoides' : 'Preaxoystyla',
-    'Trimastix' : 'Preaxostyla',
-    'Fornicata' : 'Metamonads',
-    'Parabasalia' : 'Metamonads',
-    'Preaxostyla' : 'Metamonads'
+    'Carpediemonas': 'Fornicata',
+    'Pentatrichomonas': 'Parabasalia',
+    'Trichomonas': 'Parabasalia',
+    'Tritrichomonas': 'Parabasalia',
+    'Paratrimastix': 'Preaxostyla',
+    'Monocercomonoides': 'Preaxoystyla',
+    'Trimastix': 'Preaxostyla',
+    'Fornicata': 'Metamonads',
+    'Parabasalia': 'Metamonads',
+    'Preaxostyla': 'Metamonads'
 }
 
 # break up problem in three functions
+
 
 # 1. get a list of all ancestors from a taxon
 def get_all_ancestors(taxon, root, tree):
@@ -37,12 +39,12 @@ def get_all_ancestors(taxon, root, tree):
     else:
         parent = tree.get(taxon)
         parent_ancestors = get_all_ancestors(parent, root, tree)
-        
         # add parent to parent_ancestors
         return [parent] + parent_ancestors
 
 # print(get_all_ancestors('Trichomonas','Metamonads', child_to_parent_dict))
 # # ['Parabasalia', 'Metamonads', 'Metamonads']
+
 
 # 2. get the lca of two taxa
 def get_lca_two(taxon1, taxon2):
@@ -63,16 +65,16 @@ def get_lca_two(taxon1, taxon2):
 # 3. get the lca of a list of taxa
 def get_lca_list(taxa):
     if len(taxa) == 2:
-        lca = get_lca_two(taxa[0],taxa[1])
+        lca = get_lca_two(taxa[0], taxa[1])
         return lca
     else:
         taxon1 = taxa.pop()
         ancestor = get_lca_list(taxa)
-        lca = get_lca_two(taxon1,ancestor)
+        lca = get_lca_two(taxon1, ancestor)
         return lca
 
 
-taxa = ['Giardia','Spironucleus','Trepomonas']
+taxa = ['Giardia', 'Spironucleus', 'Trepomonas']
 print(get_lca_list(taxa))
 
 # Example:
@@ -104,14 +106,14 @@ print(get_lca_list(taxa))
 ## len = 3
 ## taxon1 = 'Kipferlia'
 ## taxa = ['Giardia','Trichomonas']
-### ancestor = get_lca_list(taxa) == 'Metamonads' 
+### ancestor = get_lca_list(taxa) == 'Metamonads'
 ### lca = get_lca('Kipferlia','Metamonads') = Metamonads
 
 # Second function call
 ## len = 4
 ## taxon1 = 'Spironucleus'
 ## taxa = ['Giardia','Trichomonas','Kipferlia']
-## ancestor = get_lca_list(taxa) = 'Metamonads' 
+## ancestor = get_lca_list(taxa) = 'Metamonads'
 ### lca = get_lca('Spironucleus','Metamonads') = Metamonads
 
 # Initial function call
@@ -120,4 +122,3 @@ print(get_lca_list(taxa))
 ## taxa = ['Giardia','Trichomonas','Kipferlia','Spironucleus']
 ## ancestor = get_lca_list(taxa) = Metamonads
 ### lca = get_lca('Carpediemonas','Metamonads') = Metamonads
-
