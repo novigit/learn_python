@@ -41,9 +41,9 @@ allele_fitness_scores = {
 
 
 class Individual(object):
-    def __init__(self, allele_scores, number):
+    def __init__(self, allele_scores, allele_freqs):
         self.allele_scores = allele_scores
-        self.number = number
+        self.allele_freqs = allele_freqs
 
     def alleles(self):
         # make a dict that maps locus to a random allele
@@ -91,10 +91,10 @@ class Population(object):
         return locus_allele_frequencies
 
 
-def generate_population(size):
+def generate_population(size, allele_freqs):
     list_of_individuals = []
     for i in range(size):
-        list_of_individuals.append(Individual(allele_fitness_scores, i))
+        list_of_individuals.append(Individual(allele_fitness_scores, initial_allele_frequencies))
     p = Population(list_of_individuals, allele_fitness_scores)
     return p
 
@@ -109,8 +109,16 @@ def kill_phase(p_obj):
 
 
 def reproduction_phase(p_obj):
-    new_population = []
-    allele_freqs = p_obj.allele_frequencies()
+    # the new population consist of the survivors ...
+    new_population = p_obj.popul
+    # ... and are complemented with new individuals
+    # new indiduals get alleles based on survivor frequencies
+    survs=allele_freqs = p_obj.allele_frequencies()
+    popul_size = p_obj.size
+    while popul_size < 100:
+        new_indiv = Individual(allele_fitness_scores, survs_allele_freqs)
+        new_population.append(new_indiv)
+        popul_size += 1
     n = Population(new_population)
     return n
 
