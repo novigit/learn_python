@@ -23,7 +23,7 @@ Plot allele frequencies over time
 '''
 
 import random
-
+import matplotlib.pyplot as plt
 
 # dict of dict to store initial allele frequencies
 initial_allele_frequencies = {
@@ -151,7 +151,6 @@ gens = run_evolution(p1, 200)
 #     print(gen)
 
 # plot results
-import matplotlib.pyplot as plt
 
 locus1_alleleA_freqs = []
 locus1_alleleB_freqs = []
@@ -207,4 +206,3 @@ plt.title('Locus3')
 plt.ylim(0, 1)
 plt.xlabel('Generations')
 plt.show()
-    
